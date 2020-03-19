@@ -111,7 +111,7 @@ Please note that you cannot make any manual changes to the auto-generated direct
 
 ## Contact info
 
-If you have an issue and it is not security-related, please open an issue at [https://github.com/brianwarner/manage-groupsio-lists-from-github-action](https://github.com/brianwarner/manage-groupsio-lists-from-github-action).  If it is security-related, please contact me directly at <bwarner@linuxfoundation.org>.
+If you have an issue and it is not security-related, please open an issue at [https://github.com/LF-Projects/directory/issues](https://github.com/LF-Projects/directory/issues).  If it is security-related, please contact me directly at <bwarner@linuxfoundation.org>.
 
 ---
 
