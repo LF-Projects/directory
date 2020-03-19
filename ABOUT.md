@@ -75,19 +75,17 @@ When a list is managed by the Action, it has to be the *only* thing managing mem
 
 1. Make a backup of your group membership, just in case.  Do this from the Settings panel of your main group.
 
-1. Clone this repo to a new repo within your organization called `directory`
+1. Clone the [upstream template](https://github.com/LF-Projects/directory) to a new repo within your organization called `directory`.
 
-1. (Optional) Update the text of `groups/assets/INDEX_TEMPLATE.txt.default` if you want.  You should rename the INDEX_TEMPLATE file so it isn't overwritten if you merge in upstream changes.  Keep track of the new filename for the next step.
+1. (Optional) Update the text of `groups/assets/INDEX_TEMPLATE.txt.default` if you want.  You should rename the file to `INDEX_TEMPLATE.txt` or something similar so it isn't overwritten if you merge in upstream changes.  Keep track of the new filename for the next step.
 
-1. Update `groups/assets/config.yml` with your settings, including the renamed index template.
-
-1. Once everything is ready to go, push the repo.
+1. Update `groups/assets/config.yml` with your settings, including the renamed index template (if applicable).
 
 1. In the `directory` repo on GitHub, create a branch protection rule to prevent pushing directly to `master`.  (This is because the directory is created when you push to a branch, and Groups.io is updated when those changes are merged.)
    1. In the `directory` repo, go to Settings.
    1. Under **Branch protection rules** click *Add rule*.
    1. Branch name pattern is *master*.
-   1. Select the boxes for *Require status checks to pass before merging* and *Allow force pushes*.
+   1. Select the box *Allow force pushes* (this ensures the action can always overwrite README.md and others).
 
 1. Add the moderator account and password you created above as GitHub Secrets:
    1. In the `directory` repo, go to Settings.
