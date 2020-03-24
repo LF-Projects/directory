@@ -48,6 +48,10 @@ Here's how to do this:
 1. Use Direct Add to add a user on **main**, for example (with email delivery disabled):
    * `Subgroup Moderator <youremail+moderator@yourdomain.org> nomail`
 
+   Don't forget to disable all of the email notifications sent to moderators.
+
+1. Give this user a really strong password. You can do this by visiting the login page through an incognito window, requesting a password link for the new user, and then opening the reset link in the incognito window.  Don't forget to save the user/password combo, because you'll need them later.
+
 1. Once you've created this account, make it a **moderator** in the **main** group, and grant it only these permissions:
    * `Invite Members`
    * `Modify Group Settings`
