@@ -77,7 +77,7 @@ When a list is managed by the Action, it has to be the *only* thing managing mem
 
 1. For regular groups, make the following updates:
 
-    1. Update the `Group Description` and welcome message to include this text:
+    1. Update the `Group Description` and Welcome Message to include this text:
     
        > This is a public list for coordination between PROJECT NAME maintainers.
        > 
@@ -89,6 +89,10 @@ When a list is managed by the Action, it has to be the *only* thing managing mem
     1. Update the `Message Footer` to include this text:
 
         > Your membership in this group is configured through https://github.com/FOUNDATIONORG/directory/groups only. Please open a PR to add, change, or remove your group subscriptions. Please note that unsubscribing through Groups.io will not be permanent, as you will be re-joined when the group is synced.  The only way to permanently unsubscribe is to remove yourself from the directory.
+	
+    1. Update the Goodbye Message to include this text:
+    
+        > You have been unsubscribed from the YOURLISTADDRESS list.  If this was an error, please add yourself to the [FOUNDATION NAME directory](https://github.com/FOUNDATIONORG/directory) or email CONTACT to restore your access.
 
 1. For the meta list, make the following updates:
 
