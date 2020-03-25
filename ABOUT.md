@@ -61,19 +61,52 @@ Here's how to do this:
    * `Add Members`
    * `Remove Members`
 
-1. Repeat the previous step with each subgroup you want this file to manage (don't forget the meta list).
+1. Repeat the previous step with each subgroup you want this file to manage.  Don't forget to add your meta list, too.
 
 ### You need to find your internal Group name:
 
 Groups.io uses a special internal name for your group.  It is not the name which appears on the website, nor is it your URL.  You can find it by going to Settings &raquo; Export Group Data.  Select "Group Info" and wait for the download.  In the zip file, look for `group.json` and find the value of `name:`.  That is your group name.
 
-### You need to restrict membership and tell your users they now join the list via GitHub
+### You need to restrict membership and tell your users they now manage their list membership via GitHub
 
 When a list is managed by the Action, it has to be the *only* thing managing membership.  This is because it adds or removes members *solely* based upon the contents of the YAML file.  You need to configure the subgroup information page to inform users they cannot join through the Groups.io interface, and point them to your YAML file.
 
 1. Under your Subgroup settings, make sure `Restricted membership` is checked.
 
 1. Update the Group Description to include a link to this repo where membership is managed.
+
+1. For regular groups, make the following updates:
+
+    1. Update the `Group Description` and welcome message to include this text:
+    
+       > This is a public list for coordination between PROJECT NAME maintainers.
+       > 
+       > Membership in this project list is managed through the [FOUNDATION NAME directory](https://github.com/FOUNDATIONORG/directory) only.  You can add or remove yourself from this list by [opening a PR against this group](https://github.com/FOUNDATIONORG/directory/groups).  If configured, you will also be added to a meta list of all project leadership. To remain subscribed to this group but remove yourself from the meta list, add "include-on-meta-list: False" under your email in the group definition on GitHub.
+       > 
+       > Please note that unsubscribing through Groups.io will not be permanent, as you will be re-joined when the group is synced.  The only way to permanently unsubscribe is to remove yourself from the directory.
+
+
+    1. Update the `Message Footer` to include this text:
+
+        > Your membership in this group is configured through https://github.com/FOUNDATIONORG/directory/groups only. Please open a PR to add, change, or remove your group subscriptions. Please note that unsubscribing through Groups.io will not be permanent, as you will be re-joined when the group is synced.  The only way to permanently unsubscribe is to remove yourself from the directory.
+
+1. For the meta list, make the following updates:
+
+    1. Update the `Group Description` and welcome message to include this text:
+
+       > This is a public list for coordination between leadership groups in FOUNDATION NAME.
+       > 
+       > Membership in this meta list is managed through the [FOUNDATION NAME directory](https://github.com/FOUNDATIONORG/directory) only.  You can add or remove yourself from any project list by [opening a PR against a group](https://github.com/FOUNDATIONORG/directory/groups).  You are added to this meta list when you add yourself to one or more groups in the directory, unless "include-on-meta-list: False" is under your email in the group definition on GitHub. Members are automatically removed when they are no longer in any groups in the directory.
+       > 
+       > To remain subscribed to your group but remove yourself from this meta list, add "include-on-meta-list: False" under your email in the group definition on GitHub.
+       > 
+       > Please note that unsubscribing through Groups.io will not be permanent, as you will be re-joined when the group is synced.  The only way to permanently unsubscribe is to remove yourself from the directory.
+
+    1. Update the `Message Footer` to include this text:
+
+       > You are a member of this list because you are in a group at https://github.com/FOUNDATIONORG/directory/groups. Please open a PR to add, change, or remove your group subscriptions. Please note that unsubscribing through Groups.io will not be permanent, as you will be re-joined when the group is synced.  The only way to permanently unsubscribe is to remove yourself from the directory.
+       > 
+       > To remain subscribed to your group but remove yourself from this meta list, add "include-on-meta-list: False" under your email in the group definition on GitHub.
 
 ## Installation
 
@@ -112,6 +145,24 @@ When a list is managed by the Action, it has to be the *only* thing managing mem
 That should be everything you need to get going.  Once you open a PR that changes a `.yml` file in `groups/`, it will attempt to build a directory.  When that branch is merged to master, it will update Groups.io.
 
 Please note that you cannot make any manual changes to the auto-generated directory.  When this Action rebuilds the README.md and directory files, it will overwrite anything which is there.
+
+## About the meta list
+
+If you configure a meta list on Groups.io and add it to `config.yml`, all group members will also be added to that list.  This can be a useful way to distribute Foundation-wide information.
+
+It is *strongly* recommended that you set the moderation flag to ensure that users aren't spammed, or hit with a Reply-all storm.
+
+Users can keep their list subscription but not be included on the meta list by adding `include-on-meta-list: False` to their group file:
+
+```
+    - email: Person2@example.com
+      name: Person2 Name
+      include-on-meta-list: False
+```
+
+## A final note on unsubscribing
+
+Despite all of the text above, the About page, the welcome message, and the message footer, you may have users who ask why Groups.io unsubscribe doesn't permanently remove them.  This is because the script always adds anyone defined in GitHub if they aren't in the Groups.io list.  The only permanent way to unsubscribe is to be removed from the GitHub list definition.
 
 ## Contact info
 
