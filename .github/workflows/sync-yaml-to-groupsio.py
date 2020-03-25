@@ -137,6 +137,7 @@ all_local_valid_members = dict()
 # Open the local .yml files with subgroup definitions
 
 all_local_subgroups_and_members = dict()
+no_meta_list = list()
 
 for root,dirs,files in os.walk(group_configs_dir):
     for f in files:
@@ -208,6 +209,11 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
 
                 local_valid_members[local_member_email[0].lower()] = local_member_name
 
+                # Check if user doesn't want to be on meta-list
+
+                if 'include-on-meta-list' in local_member and not local_member['include-on-meta-list']:
+                    no_meta_list.append(local_member_email[0].lower())
+
                 # Add the member to the directory
 
                 local_member_data = ''
@@ -273,12 +279,17 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
 
                         local_member_data += '%s\n' % term_info
 
+                # Optionally add bio
+
+                if 'bio' in local_member and local_member['bio']:
+                    local_member_data += '\n%s\n' % local_member['bio']
+
                 # Optionally add sponsoring organization
 
                 if 'sponsor' in local_member and local_member['sponsor']:
                     if 'sponsor-website' in local_member and local_member['sponsor-website']:
                         local_member_data += ('\nParticipating on behalf of **[%s](%s)**\n' %
-                            (local_member['sponsor-website'],local_member['sponsor']))
+                            (local_member['sponsor'],local_member['sponsor-website']))
 
                     else:
                         local_member_data += ('\nParticipating on behalf of **%s**\n' %
@@ -620,8 +631,8 @@ if unified_list and update_groupsio:
 
     # Calculate the differences between the local file and Groups.io
 
-    local_members_to_add = set(all_local_valid_members.keys()) - groupsio_unified_members - groupsio_unified_mods
-    groupsio_members_to_remove = groupsio_unified_members - set(all_local_valid_members.keys())
+    local_members_to_add = set(all_local_valid_members.keys()) - groupsio_unified_members - groupsio_unified_mods - set(no_meta_list)
+    groupsio_members_to_remove = (groupsio_unified_members - set(all_local_valid_members.keys())).union(set(no_meta_list))
 
     # Add missing members to groups.io
 

@@ -65,3 +65,4 @@ testgroup2-wg:
       photo: groups/assets/default-image.svg
       github-username: projectmember3
       website: https://projectmember3.com
+      include-on-meta-list: False
