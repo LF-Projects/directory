@@ -250,21 +250,23 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
                         # If the role is election-based, look for a term
 
                         if 'term-begins' in role and role['term-begins']:
+
                             term_begins = role['term-begins']
 
                         if 'term-ends' in role and role['term-ends']:
+
                             term_ends = role['term-ends']
 
                         # Format the term sensibly based upon what's provided
 
                         if term_begins and term_ends:
-                            term_info = ', %s to %s' % (term_begins, term_ends)
+                            term_info = '%s to %s' % (term_begins, term_ends)
 
                         elif term_begins:
-                            term_info = ', since %s' % term_begins
+                            term_info = 'since %s' % term_begins
 
                         elif term_ends:
-                            term_info = ', until %s' % term_ends
+                            term_info = 'until %s' % term_ends
 
                         # If the role conveys voting rights, add to voting list
 
@@ -277,7 +279,7 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
                                 'term': term_info
                             })
 
-                        local_member_data += '%s\n' % term_info
+                        local_member_data += ' (%s)\n' % term_info
 
                 # Optionally add bio
 
@@ -465,6 +467,12 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
             contact_info.append('[Mailing list](mailto:%s@%s)' %
                 (local_subgroup, group_domain))
 
+            # Optionally add development list
+
+            if 'development-list' in local_groupdata and local_groupdata['development-list']:
+                contact_info.append('[Dev list](%s)' %
+                    local_groupdata['development-list'])
+
             # Optionally add calendar
 
             if 'calendar' in local_groupdata and local_groupdata['calendar']:
@@ -506,6 +514,12 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
             if 'linkedin-username' in local_groupdata and local_groupdata['linkedin-username']:
                 contact_info.append('[LinkedIn](https://linkedin/company/%s)' %
                     local_groupdata['linkedin-username'])
+
+            # Optionally add Youtube
+
+            if 'youtube' in local_groupdata and local_groupdata['youtube']:
+                contact_info.append('[YouTube](%s)' %
+                    local_groupdata['youtube'])
 
             # Optionally add artwork
 
@@ -557,10 +571,11 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
                 subgroup_page += '\n## Governance:\n\n'
 
                 if voting_member_info:
-                    subgroup_page += '#### Voting members:\n'
+                    subgroup_page += ('\n| Voting members | Role | Term |\n'
+                            '|---|:---:|:---:|\n')
 
                     for member in voting_member_info:
-                        subgroup_page += ('* **%s**, %s%s\n' %
+                        subgroup_page += ('| %s | %s | %s |\n' %
                             (member['name'], member['role'], member['term']))
 
                 subgroup_page += '\n%s' % ' | '.join(governance_info)

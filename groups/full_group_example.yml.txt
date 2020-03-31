@@ -1,5 +1,7 @@
 # vim: ts=2 sw=2 et
 
+# Use this file as a template for configuring other groups.
+
 testgroup2-wg:
   name: 'Test Group 2 (with all options)'
   description: >
@@ -8,6 +10,8 @@ testgroup2-wg:
     will be built into the directory.
   logo: groups/assets/default-image.svg
   about-url: https://linuxfoundation.org
+  development-list: https://link-to-dev-list
+  youtube: https://youtube.com/...
   slack: https://project.slack.com
   irc: '#project'
   discourse: https://project.discourse.org
