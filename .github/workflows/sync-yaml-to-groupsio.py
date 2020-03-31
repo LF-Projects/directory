@@ -279,7 +279,10 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
                                 'term': term_info
                             })
 
-                        local_member_data += ' (%s)\n' % term_info
+                        if term_info:
+                            local_member_data += ' (%s)\n' % term_info
+                        else:
+                            local_member_data += '\n'
 
                 # Optionally add bio
 
@@ -470,7 +473,7 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
             # Optionally add development list
 
             if 'development-list' in local_groupdata and local_groupdata['development-list']:
-                contact_info.append('[Dev list](%s)' %
+                contact_info.append('[Devel list](%s)' %
                     local_groupdata['development-list'])
 
             # Optionally add calendar
@@ -570,15 +573,15 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
             if governance_info or voting_member_info:
                 subgroup_page += '\n## Governance:\n\n'
 
+                subgroup_page += '\n%s' % ' | '.join(governance_info)
+
                 if voting_member_info:
                     subgroup_page += ('\n| Voting members | Role | Term |\n'
-                            '|---|:---:|:---:|\n')
+                            '|---|---|---|\n')
 
                     for member in voting_member_info:
                         subgroup_page += ('| %s | %s | %s |\n' %
                             (member['name'], member['role'], member['term']))
-
-                subgroup_page += '\n%s' % ' | '.join(governance_info)
 
             if developer_info:
                 subgroup_page += '\n## Repositories:\n\n'
