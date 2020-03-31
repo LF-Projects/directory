@@ -698,7 +698,7 @@ if create_directory:
 
     # Construct the subgroup list
 
-    for subgroup in subgroup_index:
+    for subgroup in sorted(subgroup_index, key = lambda name:name['name']):
         subgroup_list += '* [%s](%s)\n' % (subgroup['name'], subgroup['path'])
 
     with open('README.md', 'w') as indexfile:
