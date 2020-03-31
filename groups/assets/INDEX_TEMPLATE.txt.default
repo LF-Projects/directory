@@ -8,7 +8,7 @@ $subgroups
 ---
 
 This directory is automatically generated.  To make changes, please submit a
-pull request against a file in [$group_configs_dir](../$group_configs_dir).
+pull request against a file in [$group_configs_dir](/$group_configs_dir).
 
 <!-- Last generated: $generated_date -->
 
