@@ -300,11 +300,7 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
                         local_member_data += ('\nParticipating on behalf of **%s**\n' %
                             local_member['sponsor'])
 
-                # Add email
-
                 local_member_bio_details = list()
-
-                local_member_bio_details.append('\n[Email](mailto:%s)' % local_member['email'])
 
                 # Optionally add GitHub username
 
@@ -335,7 +331,7 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
                 if 'pronouns' in local_member and local_member['pronouns']:
                     local_member_bio_details.append('Pronouns: %s' % local_member['pronouns'])
 
-                local_member_data += '%s\n\n' % ' | '.join(local_member_bio_details)
+                local_member_data += '\n%s\n\n' % ' | '.join(local_member_bio_details)
 
                 local_member_info.append(local_member_data)
 
@@ -473,7 +469,7 @@ for local_file,local_subgroups_and_members in all_local_subgroups_and_members.it
             # Optionally add development list
 
             if 'development-list' in local_groupdata and local_groupdata['development-list']:
-                contact_info.append('[Devel list](%s)' %
+                contact_info.append('[Dev list](%s)' %
                     local_groupdata['development-list'])
 
             # Optionally add calendar
